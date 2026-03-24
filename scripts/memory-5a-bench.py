@@ -125,7 +125,7 @@ for i in range(1, TOTAL_ROUNDS + 1):
     def do_login():
         global token
         resp = curl_json("POST", "http://127.0.0.1:8000/api/v1/auth/login",
-            data="username=admin2@cognee.ai&password=AdminPass123!",
+            data="username=default_user@example.com&password=default_password",
             headers=["Content-Type: application/x-www-form-urlencoded"], timeout=5)
         d = json.loads(resp)
         token = d.get("access_token", "")
@@ -159,9 +159,17 @@ for i in range(1, TOTAL_ROUNDS + 1):
     # L35/add
     def memos_add():
         r = curl_json("POST", "http://127.0.0.1:8765/product/add",
-            data=json.dumps({"content": f"bench R{i} {time.time()}", "user_id": "openclaw", "session_id": "bench"}),
-            headers=["Content-Type: application/json"], timeout=10)
-        return "200" in r or "success" in r.lower() or "added" in r.lower()
+            data=json.dumps({
+                "user_id": "openclaw",
+                "session_id": f"bench-{i}",
+                "async_mode": "async",
+                "messages": [
+                    {"role": "user", "content": f"bench test round {i} timestamp {time.time()}"},
+                    {"role": "assistant", "content": "Acknowledged."}
+                ]
+            }),
+            headers=["Content-Type: application/json"], timeout=15)
+        return "200" in r or "success" in r.lower() or "added" in r.lower() or "Add completed" in r
     ok, ms = timed_run(memos_add)
     results.append((i, "L35", "add", ok, ms))
     if not ok: round_errors.append("L35/add")
