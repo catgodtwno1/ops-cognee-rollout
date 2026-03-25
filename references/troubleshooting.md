@@ -168,7 +168,7 @@ Then restart gateway.
 | User | Password | Notes |
 |------|----------|-------|
 | `default_user@example.com` | `default_password` | Auto-created at server init. All data ingested before custom user setup lives here. |
-| `admin2@cognee.ai` | `AdminPass123!` | Manually registered. Empty unless data was explicitly added under this account. |
+| `admin2@cognee.ai` | `<YOUR_PASSWORD>` | Manually registered. Empty unless data was explicitly added under this account. |
 
 ### Auth endpoint
 

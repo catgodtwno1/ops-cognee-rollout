@@ -178,8 +178,8 @@ Do not waste time trying to salvage a poisoned dataset unless the user explicitl
 
 | User | Password | ID | Notes |
 |------|----------|----|-------|
-| `default_user@example.com` | `default_password` | `f5249267-3176-40e7-ab90-1ebaab29c20f` | Auto-created at server init. All data ingested before custom user setup lives here. **This is the data owner on Scott#1.** |
-| `admin2@cognee.ai` | `AdminPass123!` | `95cf83e5-4f2d-4153-b3c4-82a3a1bd3647` | Manually registered. Has empty data directory. |
+| `default_user@example.com` | `default_password` | `<USER_UUID>` | Auto-created at server init. All data ingested before custom user setup lives here. **This is the data owner on <HOST_NAME>.** |
+| `admin2@cognee.ai` | `<YOUR_PASSWORD>` | `<USER_UUID>` | Manually registered. Has empty data directory. |
 
 **Important:** The auth endpoint is `POST /api/v1/auth/login` with `Content-Type: application/x-www-form-urlencoded`. NOT `/api/v1/users/signin`, NOT JSON body.
 
